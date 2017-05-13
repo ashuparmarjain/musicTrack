@@ -1,0 +1,12 @@
+{
+  "name": "music Track",
+  "version":"1.0.0",
+  "description": "Find all music tracks",
+
+  "scripts": {
+    "start": "harp server --port $PORT"
+  },
+  "dependencies": {
+	"harp": "*"
+  }
+}
