@@ -1,6 +1,6 @@
 app.factory("MusicTrack", function ($resource) {
     return $resource(
-        "//104.197.128.152:8000/v1/tracks/:id",
+        "http://104.197.128.152:8000/v1/tracks/:id",
         {page: "@page",id:'@id'},
         {
             "update": {method: "POST"},
@@ -12,7 +12,7 @@ app.factory("MusicTrack", function ($resource) {
 
 app.factory("GenreList", function ($resource) {
     return $resource(
-        "//104.197.128.152:8000/v1/genres",
+        "http://104.197.128.152:8000/v1/genres",
         {page: "@page",id:'@id'},
         {
             "update": {method: "POST"},
