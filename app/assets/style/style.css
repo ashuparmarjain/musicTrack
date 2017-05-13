@@ -1,0 +1,180 @@
+body{
+	font-size: 16px;
+	font-family: 'Roboto', sans-serif;
+}
+.project_title{
+	margin:20px 0;
+	text-transform: uppercase;
+	font-weight: 700;
+}
+.search_track{
+	margin-bottom: 40px;
+}
+ul.track_list>li{
+	
+	padding: 0px;
+	margin-bottom: 10PX;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2)
+}
+
+.add_track{
+	margin: 15PX 0;
+}
+.search_track form input[type=search]{
+	width: 100%;
+    border: 2px solid #000;
+    border-radius: 14px;
+    padding: 5px 40px;
+    outline: none;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+label.close_label,label.search_label{
+	position: absolute;
+	margin: 0px;
+	top: 8px;
+	font-size: 1.5rem;
+}
+label.close_label{
+	margin-left: -30px;
+	cursor: pointer;
+
+}
+label.search_label{
+	margin-left: 15px;
+}
+span.track_genre{
+	margin-left: 10px;
+}
+.add_track button{
+	background: #ccc;
+	width: 100%;
+}
+.add_track{
+	padding: 0 40px;
+}
+
+ul.track_page li a{ color: #333; }
+
+.genresList{
+	height: 300px;
+	overflow: auto;
+	overflow-x: hidden;
+}
+
+ul.track_list li ul li:nth-child(2){
+	visibility: hidden;
+}
+ul.track_list li ul:hover li:nth-child(2){
+	visibility: visible;
+}
+
+/**/
+@import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
+
+fieldset, label { margin: 0; padding: 0; }
+body{ margin: 20px; }
+h1 { font-size: 1.5em; margin: 10px; }
+
+/****** Style Star Rating Widget *****/
+
+.rating { 
+  border: none;
+  float: left;
+  margin-right: 40px;
+}
+
+.rating > input { display: none; } 
+.rating > label:before { 
+  margin: 5px;
+  font-size: 1.25em;
+  font-family: FontAwesome;
+  display: inline-block;
+  content: "\f005";
+}
+.rating > label.nostar:before { 
+  margin: 5px;
+  font-size: 1.25em;
+  font-family: FontAwesome;
+  display: inline-block;
+  content: "\f165";
+}
+
+.rating > .half:before { 
+  content: "\f089";
+  position: absolute;
+}
+
+.rating > label { 
+  color: #ddd; 
+ float: right; 
+}
+
+/***** CSS Magic to Highlight Stars on Hover *****/
+
+.rating > input:checked ~ label /* show gold star when clicked */
+ { color: #FFD700;  } /* hover previous stars in list */
+.rating > .nostar{
+	color: #ddd!important;
+}
+
+/*music tracks*/
+ul.track_details{
+	border: 2px solid #000;
+    padding: 15px;
+    margin: 0px;
+    word-break: break-word;
+}
+.toEdittrack,.toEditGenre{
+	padding: 20px;
+}
+li.edit_btn{
+	cursor: pointer;
+}
+form input[type="text"]{
+	border: none;
+    border-bottom: 1px solid #ccc;
+    padding: 2px 5px;
+    width: 100%;
+    outline: none;
+    margin-bottom: 15px;
+}
+form input.track_rate{
+	    width: 80px;
+    margin: 0px;
+    padding: 10px;
+    /* padding-left: 15px; */
+    border: none;
+    text-align: center;
+    /* border-radius: 100%; */
+    background: #eee;
+    margin-bottom: 15px;
+}
+label.label_style{
+	width: 100%;
+	margin-bottom: 10px;
+}
+.options{
+	margin-top: 40px;
+}
+.pagination>li>a, .pagination>li>span{
+  color: #000;
+}
+nav ul li a{
+  color: #000!important;
+}
+.request_status{
+  color: green;
+}
+.add_r_style{
+  margin-top: -8px;
+}
+
+@media(max-width: 768px){
+  .pull-right{
+    float: none!important;
+  }
+  .rating{
+    margin-right: 0;
+  }
+}

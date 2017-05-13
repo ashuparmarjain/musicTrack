@@ -1,0 +1,71 @@
+<div class="container" ng-controller='genreListController' ng-cloak>
+	<div class="row">
+		<div class="col-md-12 project_title">
+			<h1 class="text-center"> Track's  Genres</h1>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12" >
+			<ul class="list-unstyled track_list">
+				<li ng-repeat="genre in genres" ng-class="{'first_track': $first, 'last_track': $last}" >
+					<ul class="list-inline track_details">
+						<li><span class="track_genre">{{genre.name}}</span></li>
+						<li class="pull-right edit_btn" ng-click="toEdit(track)"><span><i class="fa fa-pencil" aria-hidden="true"></i></span></li>		
+
+					</ul>
+					<div ng-show="toEditGenre" class="toEditGenre">
+					        <form >
+					         	<label for="title" class="label_style">Genre Name</label>
+
+					        	<input type="text" name="name"  value="{{genre.name}}" ng-model="genre.name">
+								<div class="options text-right">
+									<button class="btn btn-default " ng-click="closeEdit(genre)">Cancel</button>
+									<button class="btn btn-default " ng-click="changeGenre(genre)">Save</button>					
+									
+								</div>
+					        </form>
+					</div>
+				</li>										
+			</ul>
+		</div>			
+	</div>
+
+	<div class="row">
+	<div class="col-md-12 load_more text-center">
+			<button class="btn btn-default btn-lg" ng-click=loadMore() >Load More</button>
+		</div>
+		<div class="col-md-12 add_track text-center">
+			<button class="btn btn-default btn-lg"  data-toggle="modal" data-target="#addGenre" >Add New Genre</button>
+		</div>
+	</div>	
+</div>
+<div id="addGenre" class="modal fade" role="dialog" ng-controller="addgenreController">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+        <h4 class="modal-title">Add Genre</h4>
+      </div>
+      <div class="modal-body">
+        <form  ng-show="notAdded">
+			<label for="title" class="label_style">Genre Name</label>        
+        	<input type="text" name="title" placeholder="add genre" ng-model="genre.name">        	
+        </form>
+        <div class="text-center request_status" ng-show="!notAdded">
+        		<span><i class="fa fa-check fa-5x" aria-hidden="true"></i></span>
+        		<p>Successfuly Added</p>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-default" type="button"  data-dismiss="modal" ng-click="reset()">Close</button>
+
+        <button class="btn btn-default" type="submit" ng-click="submit(genre)" ng-show="notAdded">Add Genre</button>
+      </div>
+    </div>
+
+  </div>
+</div>

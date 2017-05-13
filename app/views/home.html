@@ -1,0 +1,169 @@
+	<div class="container" ng-controller='musicTrackList' ng-cloak>
+
+		<div class="row">
+			<div class="col-md-12 project_title">
+				<h1 class="text-center">Music Tracks</h1>				
+			</div>
+
+			<div class="col-md-12 search_track">
+				<form>
+					<label class="search_label"><i class="fa fa-search" aria-hidden="true"></i></label><input type="Search" name="musicsearch" placeholder="Search Title" 
+					ng-model="userInput.fetchTag" ng-keyup="fetchdata()"><label class="close_label " ng-show="search" ng-click="endSearch()"><i class="fa fa-times-circle" aria-hidden="true"></i></label>
+				</form>
+			</div>			
+		</div>
+
+		<div class="row">
+			<div class="col-md-12" >
+				<ul class="list-unstyled track_list" ng-cloak>
+					<li ng-repeat="track in tracks" ng-class="{'first_track': $first, 'last_track': $last}"
+					 >
+						<ul class="list-inline track_details">
+							<li><span class="track_title">{{track.title}}</span>
+							<span class="track_genre" ng-repeat="genre in track.genres" ng-model="genre.name">[{{genre.name}}]</span></li>
+							<li class="pull-right edit_btn" ng-click="toEdit(track)"><span><i class="fa fa-pencil" aria-hidden="true"></i></span></li>		
+							<li class="pull-right"><div id="rating">{{track.rating}}
+								<fieldset class="rating add_r_style" >
+								    <input type="radio" id="{{$index+2}}" name="rating{{track.id}}" value="9.5"  ng-model="track.rating" disabled/><label class="half" for="{{$index+2}}"></label>
+								    <input type="radio" id="{{$index+3}}" name="rating{{track.id}}" ng-value="9.0"  ng-model="track.rating" disabled/><label class = "full" for="{{$index+3}}"></label>
+								    <input type="radio" id="{{$index+4}}" name="rating{{track.id}}" value="8.5"  ng-model="track.rating"  disabled/><label class="half" for="{{$index+4}}"></label>
+								    <input type="radio" id="{{$index+5}}" name="rating{{track.id}}" ng-value="8.0" ng-model="track.rating"  disabled/><label class = "full" for="{{$index+5}}"></label>
+								    <input type="radio" id="{{$index+6}}" name="rating{{track.id}}" ng-value="7.5"  ng-model="track.rating" disabled/><label class="half" for="{{$index+6}}"></label>
+								    <input type="radio" id="{{$index+7}}" name="rating{{track.id}}" ng-value="7.0"  ng-model="track.rating" disabled/><label class = "full" for="{{$index+7}}"></label>
+								    <input type="radio" id="{{$index+8}}" name="rating{{track.id}}" ng-value="6.5"  ng-model="track.rating" disabled/><label class="half" for="{{$index+8}}"></label>
+								    <input type="radio" id="{{$index+9}}" name="rating{{track.id}}" ng-value="6.0"  ng-model="track.rating" disabled/><label class = "full" for="{{$index+9}}"></label>
+								    <input type="radio" id="{{$index+10}}" name="rating{{track.id}}" ng-value="5.5"  ng-model="track.rating" disabled/><label class="half" for="{{$index+10}}"	></label>
+								    <input type="radio" id="{{$index+11}}" name="rating{{track.id}}" ng-value="5.0"  ng-model="track.rating" disabled/><label class = "full" for="{{$index+11}}" ></label>
+								    <input type="radio" id="{{$index+12}}" name="rating{{track.id}}" ng-value="4.5"  ng-model="track.rating" disabled/><label class="half" for="{{$index+12}}"></label>
+								    <input type="radio" id="{{$index+13}}" name="rating{{track.id}}" ng-value="4.0"  ng-model="track.rating" disabled/><label class = "full" for="{{$index+13}}"></label>
+								    <input type="radio" id="{{$index+14}}" name="rating{{track.id}}" ng-value="3.5"  ng-model="track.rating" disabled/><label class="half" for="{{$index+14}}"></label>
+								    <input type="radio" id="{{$index+15}}" name="rating{{track.id}}" ng-value="3.0" ng-model="track.rating"  disabled/><label class = "full" for="{{$index+15}}"></label>
+								    <input type="radio" id="{{$index+16}}" name="rating{{track.id}}" ng-value="2.5"  ng-model="track.rating" disabled/><label class="half" for="{{$index+16}}"></label>
+								    <input type="radio" id="{{$index+17}}" name="rating{{track.id}}" ng-value="2.0"  ng-model="track.rating" disabled/><label class = "full" for="{{$index+17}}"></label>
+								    <input type="radio" id="{{$index+18}}" name="rating{{track.id}}" ng-value="1.5"  ng-model="track.rating" disabled/><label class="half" for="{{$index+18}}"></label>
+								    <input type="radio" id="{{$index+19}}" name="rating{{track.id}}" ng-value="1.0"  ng-model="track.rating" disabled/><label class = "full" for="{{$index+19}}"></label>
+								    <input type="radio" id="{{$index+20}}" name="rating{{track.id}}" ng-value="0.5"  ng-model="track.rating" disabled/><label class="half" for="{{$index+20}}"	></label>
+								    <input type="radio" id="{{$index+1}}" name="rating{{track.id}}" ng-value="0.0"  ng-model="track.rating" checked disabled/><label class = "nostar" for="{{$index+1}}" ></label>
+
+								</fieldset></div></li>
+						</ul>
+						<div ng-show="toEdittrack" class="toEdittrack">
+					        <form >
+					         	<label for="title" class="label_style">Track Name</label>
+					        	<input type="text" name="title" placeholder="add title" value="{{track.title}}" ng-model="track.title">
+
+					         	<label for="title" class="label_style">Rating(0 - 9.5)</label>					        	
+ 	<fieldset class="rating" >
+								    <input type="radio" id="star9.5" name="rating" value="9.5"  ng-model="track.rating" /><label class="half" for="star9.5"></label>
+								    <input type="radio" id="star9" name="rating" value="9.0"  ng-model="track.rating"/><label class = "full" for="star9"></label>
+								    <input type="radio" id="star8.5" name="rating" value="8.5"  ng-model="track.rating"/><label class="half" for="star8.5"></label>
+								    <input type="radio" id="star8" name="rating" value="8.0" ng-model="track.rating"  /><label class = "full" for="star8"></label>
+								    <input type="radio" id="star7.5" name="rating" value="7.5"  ng-model="track.rating"/><label class="half" for="star7.5"></label>
+								    <input type="radio" id="star7" name="rating" value="7.0"  ng-model="track.rating" /><label class = "full" for="star7"></label>
+								    <input type="radio" id="star6.5" name="rating" value="6.5"  ng-model="track.rating" /><label class="half" for="star6.5"></label>
+								    <input type="radio" id="star6" name="rating" value="6.0"  ng-model="track.rating" /><label class = "full" for="star6"></label>
+								    <input type="radio" id="star5.5" name="rating" value="5.5"  ng-model="track.rating" /><label class="half" for="star5.5"	></label>
+								    <input type="radio" id="star5" name="rating" value="5.0"  ng-model="track.rating" /><label class = "full" for="star5" ></label>
+								    <input type="radio" id="star4.5" name="rating" value="4.5"  ng-model="track.rating" /><label class="half" for="star4.5"></label>
+								    <input type="radio" id="star4" name="rating" value="4.0"  ng-model="track.rating" /><label class = "full" for="star4"></label>
+								    <input type="radio" id="star3.5" name="rating" value="3.5"  ng-model="track.rating"/><label class="half" for="star3.5"></label>
+								    <input type="radio" id="star3" name="rating" value="3.0" ng-model="track.rating"  /><label class = "full" for="star3"></label>
+								    <input type="radio" id="star2.5" name="rating" value="2.5"  ng-model="track.rating"/><label class="half" for="star2.5"></label>
+								    <input type="radio" id="star2" name="rating" value="2.0"  ng-model="track.rating" /><label class = "full" for="star2"></label>
+								    <input type="radio" id="star1.5" name="rating" value="1.5"  ng-model="track.rating" /><label class="half" for="star1.5"></label>
+								    <input type="radio" id="star1" name="rating" value="1.0"  ng-model="track.rating" /><label class = "full" for="star1"></label>
+								    <input type="radio" id="star0.5" name="rating" value="0.5"  ng-model="track.rating" /><label class="half" for="star0.5"	></label>
+								    <input type="radio" id="star0" name="rating" value="0.0"  ng-model="track.rating" checked /><label class = "nostar" for="star0" ></label>
+
+								</fieldset>
+					        	<input type="text" class="track_rate" name="rating" placeholder="add rating" ng-model="track.rating" value="{{track.rating}}" disabled>
+								
+					         	<label for="genres[]" class="label_style">Select the genre</label>					        	
+					        	
+								
+								<div class="genresList" infinite-scroll="loadMore()"  infinite-scroll-distance="1" infinite-scroll-parent="true">
+						        	<div class="checkbox"  ng-repeat="genre in genres">
+									  <label><input type="checkbox" id="{{genre.id}}"  name="genres[]"  ng-checked="genreList.indexOf(genre.id) > -1" ng-click="toggleSelection(genre.id)">{{genre.name}}</label>
+									</div>
+								</div>
+								<div class="options text-right">
+									<button class="btn btn-default " ng-click="closeTrack(track)">Cancel</button>
+									<button class="btn btn-default " ng-click="changeTrack(track)">Save</button>
+									
+								</div>
+					        </form>
+						</div>
+					</li>										
+				</ul>
+			</div>			
+		</div>
+
+		<div class="row">
+			<div class="col-md-12 add_track text-center">
+				<button class="btn btn-default btn-lg"  data-toggle="modal" data-target="#addTrack">Add New Track</button>
+			</div>
+			<div class="col-md-12 text-center" ng-cloak>
+				<ul uib-pagination total-items="totalItems" page-label="pageLable($page)" direction-links="false" boundary-link-numbers="true" max-size="3" items-per-page="20" ng-model="currentPage" ng-change="pageChanged()"></ul>
+			</div>
+		</div>
+	</div>
+
+<div id="addTrack" class="modal fade" role="dialog" ng-controller="addTrackController">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Add Music Track</h4>
+      </div>
+      <div class="modal-body">
+        <form ng-show="notAdded">
+			<label for="title" class="label_style">Track Name</label>
+        	<input type="text" name="title" placeholder="add title" ng-model="track.title">
+        	<label for="title" class="label_style">Rating(0 - 9.5)</label>					        	
+						       	<fieldset class="rating" >
+								    <input type="radio" id="mystar9.5" name="rating" value="9.5"  ng-model="track.rating" /><label class="half" for="mystar9.5"></label>
+								    <input type="radio" id="mystar9" name="rating" value="9.0"  ng-model="track.rating"/><label class = "full" for="mystar9"></label>
+								    <input type="radio" id="mystar8.5" name="rating" value="8.5"  ng-model="track.rating"/><label class="half" for="mystar8.5"></label>
+								    <input type="radio" id="mystar8" name="rating" value="8.0" ng-model="track.rating"  /><label class = "full" for="mystar8"></label>
+								    <input type="radio" id="mystar7.5" name="rating" value="7.5"  ng-model="track.rating"/><label class="half" for="mystar7.5"></label>
+								    <input type="radio" id="mystar7" name="rating" value="7.0"  ng-model="track.rating" /><label class = "full" for="mystar7"></label>
+								    <input type="radio" id="mystar6.5" name="rating" value="6.5"  ng-model="track.rating" /><label class="half" for="mystar6.5"></label>
+								    <input type="radio" id="mystar6" name="rating" value="6.0"  ng-model="track.rating" /><label class = "full" for="mystar6"></label>
+								    <input type="radio" id="mystar5.5" name="rating" value="5.5"  ng-model="track.rating" /><label class="half" for="mystar5.5"	></label>
+								    <input type="radio" id="mystar5" name="rating" value="5.0"  ng-model="track.rating" /><label class = "full" for="mystar5" ></label>
+								    <input type="radio" id="mystar4.5" name="rating" value="4.5"  ng-model="track.rating" /><label class="half" for="mystar4.5"></label>
+								    <input type="radio" id="mystar4" name="rating" value="4.0"  ng-model="track.rating" /><label class = "full" for="mystar4"></label>
+								    <input type="radio" id="mystar3.5" name="rating" value="3.5"  ng-model="track.rating"/><label class="half" for="mystar3.5"></label>
+								    <input type="radio" id="mystar3" name="rating" value="3.0" ng-model="track.rating"  /><label class = "full" for="mystar3"></label>
+								    <input type="radio" id="mystar2.5" name="rating" value="2.5"  ng-model="track.rating"/><label class="half" for="mystar2.5"></label>
+								    <input type="radio" id="mystar2" name="rating" value="2.0"  ng-model="track.rating" /><label class = "full" for="mystar2"></label>
+								    <input type="radio" id="mystar1.5" name="rating" value="1.5"  ng-model="track.rating" /><label class="half" for="mystar1.5"></label>
+								    <input type="radio" id="mystar1" name="rating" value="1.0"  ng-model="track.rating" /><label class = "full" for="mystar1"></label>
+								    <input type="radio" id="mystar0.5" name="rating" value="0.5"  ng-model="track.rating" /><label class="half" for="mystar0.5"	></label>
+								    <input type="radio" id="mystar0" name="rating" value="0.0"  ng-model="track.rating" checked /><label class = "nostar" for="mystar0" ></label>
+
+								</fieldset>
+					        	<input type="text" class="track_rate" name="rating" ng-model="track.rating" value="{{track.rating}}" disabled>
+					         	<label for="genres[]" class="label_style">Select the genre</label>					        	
+								
+        	<div class="genresList" infinite-scroll="loadMore()"  infinite-scroll-distance="1">
+	        	<div class="checkbox"  ng-repeat="genre in genres">
+				  <label><input type="checkbox" id="{{genre.id}}" name="genres[]"  ng-checked="genreList.indexOf(genre.id) > -1" ng-click="toggleSelection(genre.id)">{{genre.name}}</label>
+				</div>
+			</div>
+        </form>
+        <div class="text-center request_status" ng-show="!notAdded">
+        		<span><i class="fa fa-check fa-5x" aria-hidden="true"></i></span>
+        		<p>Successfuly Added</p>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-default" type="button" data-dismiss="modal" ng-click="reset()">Close</button>
+        <button class="btn btn-default" type="submit" ng-click="submit(track)" ng-show="notAdded">Add Track</button>
+      </div>
+    </div>
+
+  </div>
+</div>
