@@ -4,16 +4,24 @@ app.controller('addTrackController',function($scope,$http,GenreList,MusicTrack){
 	var genrequery = GenreList.query();
 	genrequery.$promise.then(function(data){
 		$scope.genres = data.results;
+		var lastPage = Math.round((data.count)/(data.results.length));
+		
+		$scope.stopCall = false;	
 		var counter = 2;
 		$scope.loadMore = function(){
 			counter++;
-			var genrepageQuery = GenreList.query({page:counter});
-			genrepageQuery.$promise.then(function(data){
-				[].push.apply($scope.genres, data.results);
-			});
+			
+			if(counter >=54){
+				$scope.stopCall = true;
+			} else{
+				var genrepageQuery = GenreList.query({page:counter});
+				genrepageQuery.$promise.then(function(data){
+
+					[].push.apply($scope.genres, data.results);
+				});
+			}
 		}
 	});
-
 	$scope.genreList = [];
   	$scope.toggleSelection = function(genre) {
 	    var id = $scope.genreList.indexOf(genre);

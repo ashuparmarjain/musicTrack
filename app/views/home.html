@@ -81,10 +81,12 @@
 					         	<label for="genres[]" class="label_style">Select the genre</label>					        	
 					        	
 								
-								<div class="genresList" infinite-scroll="loadMore()"  infinite-scroll-distance="1" infinite-scroll-parent="true">
+								<div  id="edittrack">
+								<div class="genresList" infinite-scroll="loadMore()"  infinite-scroll-disabled='stopCall' infinite-scroll-distance="10" infinite-scroll-parent="true" >
 						        	<div class="checkbox"  ng-repeat="genre in genres">
 									  <label><input type="checkbox" id="{{genre.id}}"  name="genres[]"  ng-checked="genreList.indexOf(genre.id) > -1" ng-click="toggleSelection(genre.id)">{{genre.name}}</label>
 									</div>
+								</div>
 								</div>
 								<div class="options text-right">
 									<button class="btn btn-default " ng-click="closeTrack(track)">Cancel</button>
@@ -148,10 +150,12 @@
 					        	<input type="text" class="track_rate" name="rating" ng-model="track.rating" value="{{track.rating}}" disabled>
 					         	<label for="genres[]" class="label_style">Select the genre</label>					        	
 								
-        	<div class="genresList" infinite-scroll="loadMore()"  infinite-scroll-distance="1">
+			<div  id="addTrack">						
+        	<div class="genresList" infinite-scroll="loadMore()"  infinite-scroll-distance="10" infinite-scroll-disabled='stopCall'  infinite-scroll-parent="true"  >
 	        	<div class="checkbox"  ng-repeat="genre in genres">
 				  <label><input type="checkbox" id="{{genre.id}}" name="genres[]"  ng-checked="genreList.indexOf(genre.id) > -1" ng-click="toggleSelection(genre.id)">{{genre.name}}</label>
 				</div>
+			</div>
 			</div>
         </form>
         <div class="text-center request_status" ng-show="!notAdded">

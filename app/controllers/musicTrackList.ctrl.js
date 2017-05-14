@@ -43,19 +43,7 @@ app.controller('musicTrackList',function($scope,$http,MusicTrack,GenreList){
 	    }
 	}
 
-	//Load Genre as scroll when editing the track
-	var genrequery = GenreList.query();
-	genrequery.$promise.then(function(data){
-		$scope.genres = data.results;
-		var counter = 1;
-		$scope.loadMore = function(){
-			counter++;
-			var genrepageQuery = GenreList.query({page:counter});
-			genrepageQuery.$promise.then(function(data){
-				[].push.apply($scope.genres, data.results);
-			});
-		}
-	});
+
 
 
 	$scope.genreList = [];
@@ -84,6 +72,31 @@ app.controller('musicTrackList',function($scope,$http,MusicTrack,GenreList){
 		$scope.closeTrack = function(track){
 			this.toEdittrack = false;
 		}
+			//Load Genre as scroll when editing the track
+		var genrequery = GenreList.query();
+		genrequery.$promise.then(function(data){
+			$scope.genres = data.results;
+			var lastPage = Math.round((data.count)/(data.results.length));
+			
+			$scope.stopCall = false;
+			var counter = 1;
+			$scope.loadMore = function(){
+				if(this.toEdittrack){
+					counter++;
+					
+					if(counter >=54){
+						$scope.stopCall = true;
+					} else{
+						var genrepageQuery = GenreList.query({page:counter});
+						genrepageQuery.$promise.then(function(data){
+
+							[].push.apply($scope.genres, data.results);
+						});
+					}
+				}
+				
+			}
+		});
 	}
 
 

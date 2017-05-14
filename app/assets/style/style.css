@@ -56,10 +56,10 @@ span.track_genre{
 
 ul.track_page li a{ color: #333; }
 
-.genresList{
-	height: 300px;
-	overflow: auto;
-	overflow-x: hidden;
+#addTrack,#edittrack{
+  height: 300px;
+  overflow: auto;
+  overflow-x: hidden;
 }
 
 ul.track_list li ul li:nth-child(2){
