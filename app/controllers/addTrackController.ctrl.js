@@ -11,7 +11,7 @@ app.controller('addTrackController',function($scope,$http,GenreList,MusicTrack){
 		$scope.loadMore = function(){
 			counter++;
 			
-			if(counter >=54){
+			if(counter >lastPage){
 				$scope.stopCall = true;
 			} else{
 				var genrepageQuery = GenreList.query({page:counter});
