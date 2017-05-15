@@ -177,4 +177,7 @@ nav ul li a{
   .rating{
     margin-right: 0;
   }
+  fieldset.rating > label {
+        font-size:9px;
+  }
 }
