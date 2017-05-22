@@ -149,6 +149,7 @@ form input.track_rate{
     /* border-radius: 100%; */
     background: #eee;
     margin-bottom: 15px;
+    margin-left: 20px;
 }
 label.label_style{
 	width: 100%;
@@ -180,5 +181,10 @@ nav ul li a{
   }
   fieldset.rating > label {
         font-size:9px;
+  }
+  #rating span{
+        margin-top: 20px;
+    display: inline-block;
+    margin-left: 20px;
   }
 }

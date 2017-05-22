@@ -22,7 +22,7 @@
 							<li><span class="track_title">{{track.title}}</span>
 							<span class="track_genre" ng-repeat="genre in track.genres" ng-model="genre.name">[{{genre.name}}]</span></li>
 							<li class="pull-right edit_btn" ng-click="toEdit(track)"><span><i class="fa fa-pencil" aria-hidden="true"></i></span></li>		
-							<li class="pull-right"><div id="rating">{{track.rating}}
+							<li class="pull-right"><div id="rating"><span>{{track.rating}}</span>
 								<fieldset class="rating add_r_style" >
 								    <input type="radio" id="{{$index+2}}" name="rating{{track.id}}" value="9.5"  ng-model="track.rating" disabled/><label class="half" for="{{$index+2}}"></label>
 								    <input type="radio" id="{{$index+3}}" name="rating{{track.id}}" ng-value="9.0"  ng-model="track.rating" disabled/><label class = "full" for="{{$index+3}}"></label>
@@ -105,7 +105,8 @@
 				<button class="btn btn-default btn-lg"  data-toggle="modal" data-target="#addTrack">Add New Track</button>
 			</div>
 			<div class="col-md-12 text-center" ng-cloak>
-				<ul uib-pagination total-items="totalItems" page-label="pageLable($page)" direction-links="false" boundary-link-numbers="true" max-size="3" items-per-page="20" ng-model="currentPage" ng-change="pageChanged()"></ul>
+				<ul uib-pagination total-items="totalItems" page-label="pageLable($page)" direction-links="false" boundary-link-numbers="true" max-size="3" items-per-page="20" ng-model="currentPage" ng-change="pageChanged()" ng-hide="userInput.fetchTag"></ul>
+				<button class="btn btn-default " ng-click="moreSearchResult()" ng-show="userInput.fetchTag && morepostSearched">Load more</button>
 			</div>
 		</div>
 	</div>

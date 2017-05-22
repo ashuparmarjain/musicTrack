@@ -24,6 +24,7 @@ app.controller('musicTrackList',function($scope,$http,MusicTrack,GenreList){
 	//Search Track Functionality
 	var delayTimer;
 	$scope.search = false;
+	$scope.morepostSearched = false;
 	$scope.fetchdata = function() {	
 		$scope.search = true;
 
@@ -31,7 +32,28 @@ app.controller('musicTrackList',function($scope,$http,MusicTrack,GenreList){
 	    delayTimer = setTimeout(function() {
 			var searchQuery = MusicTrack.query({title:$scope.userInput.fetchTag});
 				searchQuery.$promise.then(function(data){
+					var s_counter = 1;
 					$scope.tracks = data.results;
+					if(data.next!= null){
+							$scope.morepostSearched = true;
+							$scope.moreSearchResult= function(){
+								s_counter++;
+								var searchpageQuery = MusicTrack.query({page:s_counter, title:$scope.userInput.fetchTag});
+								searchpageQuery.$promise.then(function(data){
+									[].push.apply($scope.tracks , data.results);
+									if(data.next == null){
+										$scope.morepostSearched = false;	
+									}
+								});	
+							}							
+					}else{
+						$scope.morepostSearched = false;
+
+					}
+		  		}, function(err){
+		  			console.log(err);
+		  			alert('Sorry we could not update the track, Please try again later');
+
 		  		});	
 	    }, 100); 
 
@@ -39,6 +61,7 @@ app.controller('musicTrackList',function($scope,$http,MusicTrack,GenreList){
 	   		query.$promise.then(function(data){
 				$scope.tracks = data.results;
 				$scope.userInput.fetchTag = null;
+				$scope.search = false;
 		  	});
 	    }
 	}
@@ -51,7 +74,7 @@ app.controller('musicTrackList',function($scope,$http,MusicTrack,GenreList){
 	    var id = $scope.genreList.indexOf(genre);
 	    // Is currently selected
 	    if (id > -1) {
-	      $scope.genreList.splice(idx, 1);
+	      $scope.genreList.splice(id, 1);
 	    }
 	    // Is newly selected
 	    else {
@@ -66,7 +89,15 @@ app.controller('musicTrackList',function($scope,$http,MusicTrack,GenreList){
 		this.toEdittrack = true;
 		$scope.changeTrack = function(track){
 			track.genres = $scope.genreList;
-			MusicTrack.update({id:track.id},track);
+			MusicTrack.update({id:track.id},track).$promise.then(function(res){
+				track.genres = res.genres;
+				track.rating = res.rating;
+				track.title = res.title;
+				alert('Track Updated');
+			},function(err){
+				console.log(err);
+				alert('Sorry we could not update the track, Please try again later');
+			});
 			this.toEdittrack = false;
 		}
 		$scope.closeTrack = function(track){

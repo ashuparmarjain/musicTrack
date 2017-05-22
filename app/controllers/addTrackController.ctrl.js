@@ -37,7 +37,11 @@ app.controller('addTrackController',function($scope,$http,GenreList,MusicTrack){
 
 	$scope.submit = function(track){
 		track.genres=$scope.genreList;
-		MusicTrack.update({id:track.id},track);
+		MusicTrack.update({id:track.id},track).$promise.then(function(res){
+			},function(err){
+				console.log(err);
+				alert('Sorry we could not add the track, Please try again later');
+			});
 		$scope.notAdded = false;
 	}
 
